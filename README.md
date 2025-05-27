@@ -6,10 +6,11 @@ A simple package for fine tuning pretrained model
 
 - Qwen 1.5 - 0.5B parameters
 - Fine tune using LoRA
-- Dataset: OpenAssistant/oasst1 (English only)
+- Dataset: OpenAssistant/oasst1 and WildChat (English only)
+
+Tested on 3080Ti
 
 ## Installation
-
 
 ```bash
 pip install -r requirements.txt
@@ -19,7 +20,7 @@ pip install -r requirements.txt
 
 To change model, edit settings.py
 
-To change other settings, edit model.py
+To change dataset, edit dataloader.py
 
 To start training:
 
