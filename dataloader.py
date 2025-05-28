@@ -1,3 +1,4 @@
+from urllib import response
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer
 from settings import *
@@ -42,6 +43,17 @@ def dataLoader(dataset):
                     "response": message[convo + 1]["content"]
                 })
 
+    elif dataset == "ai-medical-chatbot":
+        raw_data = load_dataset("ruslanmv/ai-medical-chatbot", split="train")
+
+        examples = []
+        for ex in raw_data:
+            examples.append({
+                "prompt": ex["Description"] + " " + ex["Patient"],
+                "response": ex["Doctor"]
+            })
+
+    
     # Format data for instruction tuning
     def format_example(example):
         return {"text": f"### Prompt:\n{example['prompt']}\n\n### Response:\n{example['response']}"}

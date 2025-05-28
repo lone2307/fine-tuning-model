@@ -13,7 +13,7 @@ from settings import *
 from dataloader import dataLoader
 
 # Initialize wandb
-wandb.init(project="qwen-lora", name="oasst-qwen-0.5B")
+wandb.init(project= model_id, name = model_path)
 
 # Loading dataset and tokenizer
 tokenized_dataset = dataLoader(dataset_name)
@@ -52,7 +52,7 @@ model = get_peft_model(model, lora_config)
 
 # Set up training
 training_args = TrainingArguments(
-    output_dir="./lora-qwen-oasst",
+    output_dir= "./" + model_path,
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,
     logging_dir="./logs",
@@ -62,7 +62,7 @@ training_args = TrainingArguments(
     learning_rate=2e-4,
     bf16=True,
     report_to="wandb",
-    run_name="oasst-qwen-0.5b"
+    run_name=model_path
 )
 
 data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
