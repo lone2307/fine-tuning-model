@@ -21,7 +21,7 @@ tokenized_dataset = dataLoader(dataset_name)
 tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token
 
-# Load model with LoRA config
+# Load model with LoRA configv
 print("Loading model with LoRA config...")
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -42,7 +42,7 @@ model = prepare_model_for_kbit_training(model)
 lora_config = LoraConfig(
     r=8,
     lora_alpha=32,
-    target_modules=["c_attn", "q_proj", "v_proj"],  # Adjust as needed
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],  # Adjust as needed
     lora_dropout=0.05,
     bias="none",
     task_type="CAUSAL_LM"

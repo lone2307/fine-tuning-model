@@ -1,5 +1,3 @@
-from curses import raw
-import tokenize
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer
 from settings import *
